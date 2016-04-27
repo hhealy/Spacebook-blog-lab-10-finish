@@ -7,18 +7,19 @@ import play.db.jpa.Model;
 @Entity
 public class Comment extends Model
 {
-	@Lob
 	public String comment;
+	public String date;
+	public long postId;
+
 	@ManyToOne
 	public User commentAuthor;
-	@ManyToOne
-	public Post postAuthor;
 
-	public Comment(User commentAuthor, Post postAuthor, String comment)
+	public Comment(User commentAuthor, String comment, Long postId, String date)
 	{
 	    this.comment = comment;
 	    this.commentAuthor = commentAuthor;
-	    this.postAuthor = postAuthor;
+	    this.postId = postId;
+	    this.date = date;
 	}
 
 	public String toString()

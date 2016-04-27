@@ -7,12 +7,13 @@
     </p>
   #{list items:post.comments, as:'comment'}
   	<p>
-  		${comment.commentAuthor}: ${comment.comment}
+  		${comment.commentAuthor.firstName} ${comment.commentAuthor.lastName} says :
+  		 ${comment.comment} : at : ${comment.date}
   	</p>
   #{/list}
     <section class="ui form segment">
   <h4 class="ui inverted blue block header">Create a Comment</h4>
-  <form action="/blog/newcomment/${user.id}/${post.id}" method="POST">
+  <form action="/publicblog/sendcomment/${user.id}/${post.id}" method="POST">
     <div class="field">   
       <textarea name="comment" placeholder="Comment"></textarea>
     </div>

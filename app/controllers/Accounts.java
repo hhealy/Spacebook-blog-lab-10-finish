@@ -19,13 +19,17 @@ public class Accounts extends Controller
 
   public static void logout()
   {
+	User user = getLoggedInUser();
+	user.logged = false;
+	user.save();
     session.clear();
     index();
   }
 
   public static void index()
   {
-    render();
+	List<User> users = User.findAll();
+    render(users);
   }
 
   public static User getLoggedInUser()
@@ -60,6 +64,8 @@ public class Accounts extends Controller
     {
       Logger.info("Authentication successful");
       session.put("logged_in_userid", user.id);
+      user.logged = true;
+      user.save();
       Home.index();
     }
     else

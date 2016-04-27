@@ -2,9 +2,15 @@
   <div class="ui list"> 
     #{list items:users, as:'user'}
       <div class="ui item"> 
+       #{if user.logged ==  true}
+        <p>|||ONLINE|||</p>
+      #{/if}
+      #{else}
+        <p>|||OFFLINE|||</p>
+      #{/else}
         <i class="user icon"></i>
         <div class="content">
-          ${user.firstName} ${user.lastName}: : ${user.statusText}  <a href="members/follow/${user.id}"> (follow) <a href="blog/${user.id}"> Blog</a> 
+          ${user.firstName} ${user.lastName}: : ${user.statusText}  <a href="members/follow/${user.id}"> (follow) <a href="../publicblog/${user.id}"> Blog</a> 
         </div>
       </div>
     #{/list}

@@ -22,6 +22,7 @@ public class User extends Model
   public Blob   thumbnailPicture;
   public int    age;
   public String nationality;
+  public Boolean logged;
 
   @OneToMany(mappedBy = "sourceUser")
   public List<Friendship> friendships = new ArrayList<Friendship>();
@@ -89,6 +90,15 @@ public class User extends Model
     outbox.add(message);
     to.inbox.add(message);
     message.save();
-  }  
+  }
+  
+  public void sendComment (User to, String comment, Long id, String date)
+  {
+		Post post = Post.findById(id);
+		  
+	    Comment commentText = new Comment(this, comment, id, date);
+	    post.comments.add(commentText);
+	    commentText.save();
+  }
   
 }

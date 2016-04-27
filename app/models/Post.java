@@ -16,7 +16,7 @@ public class Post extends Model
   @Lob
   public String content;
   
-  @OneToMany
+  @OneToMany(mappedBy = "id")
   public List<Comment> comments = new ArrayList<Comment>();
 
   public Post(String title, String content)

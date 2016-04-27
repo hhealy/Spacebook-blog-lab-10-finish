@@ -30,16 +30,4 @@ public class Blog  extends Controller
     index();
   }
   
-  public static void newComment(Long userId, Long postId, String comment)
-  {
-	  User user = Accounts.getLoggedInUser();
-	  Post post = Post.findById(postId);
-	  
-	  Comment commentTwo = new Comment(user, post, comment);
-	  user.comments.add(commentTwo);
-	  post.comments.add(commentTwo);
-	  commentTwo.save();
-	  Logger.info ("comment:" + comment);
-	  index();
-  }
 }
